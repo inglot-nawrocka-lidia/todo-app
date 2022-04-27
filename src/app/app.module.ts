@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { DateComponentModule } from '@date';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DateComponentModule } from '@date';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,6 +14,7 @@ import { DateComponentModule } from '@date';
     BrowserModule,
     AppRoutingModule,
     DateComponentModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
