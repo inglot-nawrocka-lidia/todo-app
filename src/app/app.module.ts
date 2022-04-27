@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DateComponentModule } from '@date';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { environment } from '../environments/environment';
+
+import { DateComponentModule } from '@date';
+import { AngularFireModule } from '@angular/fire/compat';
+import { FirebasePhotoServiceModule, PhotoComponentModule } from '@photo';
+
+
+
 
 
 
@@ -13,8 +19,10 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DateComponentModule
-    
+    DateComponentModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    PhotoComponentModule,
+    FirebasePhotoServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

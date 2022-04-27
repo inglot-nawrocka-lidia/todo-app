@@ -6,5 +6,5 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/
     encapsulation: ViewEncapsulation.None, 
     changeDetection: ChangeDetectionStrategy.OnPush })
 export class DateComponent {
-    today: string = new Date().toDateString();
+    todayDate: string = new Date().toDateString();
 }
