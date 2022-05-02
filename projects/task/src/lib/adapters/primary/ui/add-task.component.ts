@@ -1,9 +1,46 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
-@Component({ 
-    selector: 'lib-add-task', 
-    templateUrl: './add-task.component.html', 
-    encapsulation: ViewEncapsulation.None, 
-    changeDetection: ChangeDetectionStrategy.OnPush })
+import { FormGroup, FormControl } from '@angular/forms';
+import {
+    Component,
+    ViewEncapsulation,
+    ChangeDetectionStrategy,
+    Inject
+} from '@angular/core';
+import { AddsTaskDtoPort, ADDS_TASK_DTO } from '../../../application/ports/secondary/adds-task.dto-port';
+    
+
+@Component({
+    selector: 'lib-add-task',
+    templateUrl: './add-task.component.html',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
 export class AddTaskComponent {
+    readonly addTask: FormGroup = new FormGroup({
+        taskDescription: new FormControl()
+    });
+
+    constructor(
+        @Inject(ADDS_TASK_DTO)
+        private _addsTaskDto: AddsTaskDtoPort
+    ) { }
+
+    onAddTaskSubmited(addTask: FormGroup): void {
+        if (addTask.invalid) {
+            return;
+        }
+        this._addsTaskDto.add({
+            task: addTask.get('task')?.value,
+            done: false,
+            created: Date.now(),
+        });
+        this.addTask.reset();
+    }
+
+    onChangeClicked(): void {
+        let buttonOfChange = document.getElementById('buttonOfChange');
+        if (buttonOfChange != null) {
+            buttonOfChange.style.display = 'block';
+        }
+    }
 }
