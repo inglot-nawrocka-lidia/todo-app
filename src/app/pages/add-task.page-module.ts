@@ -6,6 +6,7 @@ import { AddTaskComponentModule } from '../../../projects/task/src/lib/adapters/
 import { FirebaseTaskServiceModule } from '../../../projects/task/src/lib/adapters/secondary/infrastructure/firebase-task.service-module';
 import { TaskListComponentModule } from '../../../projects/task/src/lib/adapters/primary/ui/task-list.component-module';
 import { FirebasePhotoServiceModule } from '@photo';
+import { HomePageComponentModule } from '../../../projects/task/src/lib/adapters/primary/ui/home-page.component-module';
 
 @NgModule({ imports: [CommonModule, 
       RouterModule.forChild([
@@ -18,6 +19,7 @@ import { FirebasePhotoServiceModule } from '@photo';
   FirebaseTaskServiceModule,
   TaskListComponentModule,
   FirebasePhotoServiceModule,
+  HomePageComponentModule
 ],
   	declarations: [AddTaskPage],
   	providers: [],

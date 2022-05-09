@@ -15,6 +15,9 @@ import { SETS_TASK_DTO, SetsTaskDtoPort  } from '../../../application/ports/seco
 import {  FormGroup, FormControl } from '@angular/forms';
 import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal'
 
+
+import { ADDS_TASK_DTO, AddsTaskDtoPort } from '../../../application/ports/secondary/adds-task.dto-port';
+
 @Component({ 
     selector: 'lib-task-list', 
     templateUrl: './task-list.component.html', 
@@ -43,7 +46,7 @@ import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal'
           private _getsAllTaskDto: GetsAllTaskDtoPort,
           @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort,
           @Inject(REMOVES_TASK_DTO)
-          private _removesTaskDto: RemovesTaskDtoPort ) {}
+          private _removesTaskDto: RemovesTaskDtoPort, @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort ) {}
       
         onItemClicked(setTask: any): void {
           if (setTask.done === false) {
@@ -76,60 +79,3 @@ import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal'
           this.completeTaskAlert = true;
         }
 }
-
-
-// @Injectable({ providedIn: 'root' })
-
-// export class TaskListComponent {
-
-//     taskToRemove: string = '';
-//     taskDone: boolean = false;
-//     taskDelete: boolean = false;
-//     counter = 0;
-
-//     tasks$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll()
-//         .pipe(map((task: TaskDTO[]) =>
-//             task.sort((a, b) => a.created - b.created))
-//         );
-
-//     constructor(
-//         @Inject(GETS_ALL_TASK_DTO)
-//         private _getsAllTaskDto: GetsAllTaskDtoPort,
-//         @Inject(REMOVES_TASK_DTO)
-//         private _removesTaskDto: RemovesTaskDtoPort,
-//         @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort
-//     ) { }
-
-//     onDeleteTaskClicked(task: TaskDTO, taskId: string): void {
-//         this._removesTaskDto.remove(this.taskToRemove + task.id);
-//         this.taskToRemove = taskId;
-//     }
-
-//     onDoneTaskClicked(task: TaskDTO): void {
-//         if (task.done) {
-//             this._setsTaskDto.set({ ...task, done: false });
-//         } else {
-//             this._setsTaskDto.set({ ...task, done: true });
-//         }
-//     }
-
-//     onEditTaskClicked(task: TaskDTO): void {}
-
-//      showDoneAlert(): void {
-//         this.taskDone = true;
-//         this.taskDelete = false;
-//     }
-
-//     showDeleteAlert(): void {
-//         this.taskDone = false;
-//         this.taskDelete = true;
-//     }
-
-//     check(task: any): void {
-//         if (task.done === true) {
-//             this.counter -= 1;
-//             console.log()
-//         } else {
-//             this.counter += 1;
-//         }
-//     }

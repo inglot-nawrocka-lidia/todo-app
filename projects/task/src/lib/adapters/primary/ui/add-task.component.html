@@ -28,8 +28,16 @@
 </div> -->
 
    
-<form [formGroup]="task" (ngSubmit)="onAddTaskSubmited(task)">
-    <input type="text" formControlName="task" placeholder="Task" ngModel required class="d-block"/>
-    <button type="submit" [disabled]="task.invalid" class="addButton">Add Task</button>
-    <button type="button" class="bg-secondary m-3 cancelMain" (click)="cancelAnimationFrame()">Cancel</button>
-</form> 
+
+<div class="container">    
+        <form [formGroup]="task" (ngSubmit)="onAddTaskSubmited(task)">
+            <input type="text" formControlName="task" placeholder="Task" ngModel required class="d-block"/>
+            <button type="submit" [disabled]="task.invalid" class="addButton">Add Task</button>
+            <button routerLink="/" type="button" class="bg-secondary m-3 cancelMain" (click)="cancelAnimationFrame()">Cancel</button>
+        </form>
+</div>
+<div class="d-flex justify-content-center py-5">
+    <div>
+        <button routerLink="/" type="button" class="Button">Back to Home</button>
+    </div>
+</div>
