@@ -9,16 +9,18 @@ import {
     encapsulation: ViewEncapsulation.None, 
     changeDetection: ChangeDetectionStrategy.OnPush })
 
-export class HomePagePage {
-    onChangeClicked(): void {
-        let buttonOfChange = document.getElementById('buttonOfChange');
-        if (buttonOfChange != null) {
-            buttonOfChange.style.display = 'block';
-        }
-        let change = document.getElementById('changeToForm');
-        if (change != null) {
-            change.style.display = 'none';
-        }
-    }
-}
+export class HomePagePage {}
+
+
+    // onChangeClicked(): void {
+    //     let buttonOfChange = document.getElementById('buttonOfChange');
+    //     if (buttonOfChange != null) {
+    //         buttonOfChange.style.display = 'block';
+    //     }
+    //     let change = document.getElementById('changeToForm');
+    //     if (change != null) {
+    //         change.style.display = 'none';
+    //     }
+    // }
+
 
