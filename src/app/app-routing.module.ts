@@ -4,7 +4,7 @@ import { HomePagePageModule } from './pages/home-page.page-module';
 import { AddTaskPageModule } from './pages/add-task.page-module';
 
 const routes: Routes = [{ 
-        path: 'home-page', 
+        path: '', 
         loadChildren: () => HomePagePageModule
       },
   { 

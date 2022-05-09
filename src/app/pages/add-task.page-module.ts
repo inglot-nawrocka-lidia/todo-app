@@ -17,7 +17,7 @@ import { FirebasePhotoServiceModule } from '@photo';
   AddTaskComponentModule,
   FirebaseTaskServiceModule,
   TaskListComponentModule,
-  FirebasePhotoServiceModule
+  FirebasePhotoServiceModule,
 ],
   	declarations: [AddTaskPage],
   	providers: [],
