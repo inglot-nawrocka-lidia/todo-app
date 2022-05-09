@@ -54,10 +54,10 @@
   
             <ng-template #template>
               <div class="modal-header">
-                <h4 class="modal-title pull-left">DELETE TASK</h4>
+                <h4 class="modal-title pull-center">DELETE TASK</h4>
                 <button
                   type="button"
-                  class="btn-close close pull-right"
+                  class="btn-close close pull-center"
                   aria-label="Close"
                   (click)="modalRef?.hide()"
                 >
@@ -76,7 +76,7 @@
                   <button
                     (click)="removeTask(task.id)"
                     (click)="modalRef?.hide()"
-                    class="me-2 bg-danger border-light rounded text-white"
+                    class="me-2 bg-danger border-dark rounded text-white"
                     (click)="showDeleteTask()"
                   >
                     Delete task
@@ -84,7 +84,7 @@
                 </div>
                 <div class="p-2 bd-highlight pe-2">
                   <button
-                    class="me-1 bg-light border border-light rounded"
+                    class="me-1 bg-light border border-dark rounded"
                     (click)="modalRef?.hide()"
                   >
                     Cancel

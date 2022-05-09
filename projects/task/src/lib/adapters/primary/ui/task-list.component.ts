@@ -11,8 +11,8 @@ import { TaskDTO } from '../../../application/ports/secondary/task.dto';
 import { GETS_ALL_TASK_DTO, GetsAllTaskDtoPort} from '../../../application/ports/secondary/gets-all-task.dto-port';
 import { REMOVES_TASK_DTO, RemovesTaskDtoPort } from '../../../application/ports/secondary/removes-task.dto-port';
 import { SETS_TASK_DTO, SetsTaskDtoPort  } from '../../../application/ports/secondary/sets-task.dto-port';
-import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+
+import {  FormGroup, FormControl } from '@angular/forms';
 import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal'
 
 @Component({ 
@@ -23,7 +23,7 @@ import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal'
 
 
     export class TaskListComponent {
-        tasks$: Observable<TaskDTO[]> = this._getsAllAddTaskDto
+        tasks$: Observable<TaskDTO[]> = this._getsAllTaskDto
           .getAll()
           .pipe(map((task: TaskDTO[]) => task.sort((a, b) => b.created - a.created)));
         created$: Observable<number> = this.tasks$.pipe(
@@ -40,21 +40,19 @@ import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal'
         constructor(
           private modalService: BsModalService,
           @Inject(GETS_ALL_TASK_DTO)
-          private _getsAllAddTaskDto: GetsAllTaskDtoPort,
-          @Inject(SETS_TASK_DTO) private _setsAddTaskDto: SetsTaskDtoPort,
+          private _getsAllTaskDto: GetsAllTaskDtoPort,
+          @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort,
           @Inject(REMOVES_TASK_DTO)
-          private _removesAddTaskDto: RemovesTaskDtoPort,
-          private router: Router
-        ) {}
+          private _removesTaskDto: RemovesTaskDtoPort ) {}
       
         onItemClicked(setTask: any): void {
-          if (setTask.isChecked === false) {
-            this._setsAddTaskDto.set({
+          if (setTask.done === false) {
+            this._setsTaskDto.set({
               id: setTask.id,
               done: true,
             });
           } else {
-            this._setsAddTaskDto.set({
+            this._setsTaskDto.set({
               id: setTask.id,
               done: false,
             });
@@ -62,7 +60,7 @@ import { BsModalRef, BsModalService} from 'ngx-bootstrap/modal'
         }
       
         removeTask(taskId: string): void {
-          this._removesAddTaskDto.remove(taskId);
+          this._removesTaskDto.remove(taskId);
         }
         openModal(template: TemplateRef<any>) {
           this.modalRef = this.modalService.show(template);
