@@ -11,6 +11,8 @@ import { GETS_ALL_TASK_DTO, GetsAllTaskDtoPort} from '../../../application/ports
 import { REMOVES_TASK_DTO, RemovesTaskDtoPort } from '../../../application/ports/secondary/removes-task.dto-port';
 import { SETS_TASK_DTO, SetsTaskDtoPort  } from '../../../application/ports/secondary/sets-task.dto-port';
 
+
+
 @Component({ 
     selector: 'lib-task-list', 
     templateUrl: './task-list.component.html', 
@@ -54,7 +56,7 @@ export class TaskListComponent {
 
     onEditTaskClicked(task: TaskDTO): void {}
 
-    showDoneAlert(): void {
+     showDoneAlert(): void {
         this.taskDone = true;
         this.taskDelete = false;
     }
