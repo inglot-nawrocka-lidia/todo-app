@@ -7,7 +7,7 @@ import {
     Inject
 } from '@angular/core';
 import { AddsTaskDtoPort, ADDS_TASK_DTO } from '../../../application/ports/secondary/adds-task.dto-port';
-    
+import { RemovesTaskDtoPort, REMOVES_TASK_DTO } from '../../../application/ports/secondary/removes-task.dto-port';
 
 @Component({
     selector: 'lib-add-task',
@@ -16,31 +16,25 @@ import { AddsTaskDtoPort, ADDS_TASK_DTO } from '../../../application/ports/secon
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddTaskComponent {
-    readonly addTask: FormGroup = new FormGroup({
-        taskDescription: new FormControl()
-    });
-
+    readonly task: FormGroup = new FormGroup({ task: new FormControl() });
+  
     constructor(
-        @Inject(ADDS_TASK_DTO)
-        private _addsTaskDto: AddsTaskDtoPort
-    ) { }
-
+      @Inject(ADDS_TASK_DTO) private _addsAddTaskDto: AddsTaskDtoPort,
+      @Inject(REMOVES_TASK_DTO)
+      private _removesTaskDto: RemovesTaskDtoPort
+    ) {}
+  
     onAddTaskSubmited(addTask: FormGroup): void {
-        if (addTask.invalid) {
-            return;
-        }
-        this._addsTaskDto.add({
-            task: addTask.get('task')?.value,
-            done: false,
-            created: Date.now(),
-        });
-        this.addTask.reset();
+      this._addsAddTaskDto.add({
+        task: addTask.get('task')?.value,
+        created: new Date().getTime(),
+      });
+      this.task.reset();
+    }
+    cancelAnimationFrame(): void {
+      this.task.reset();
     }
 
-    onChangeClicked(): void {
-        let buttonOfChange = document.getElementById('buttonOfChange');
-        if (buttonOfChange != null) {
-            buttonOfChange.style.display = 'block';
-        }
-    }
-}
+   }
+    
+    

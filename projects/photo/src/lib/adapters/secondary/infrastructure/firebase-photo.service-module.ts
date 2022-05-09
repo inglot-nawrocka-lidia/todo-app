@@ -5,7 +5,9 @@ import { GETS_ALL_PHOTO_DTO } from '../../../application/ports/secondary/gets-al
 
 @NgModule({ imports: [AngularFirestoreModule],
   	declarations: [],
-  	providers: [FirebasePhotoService, { provide: GETS_ALL_PHOTO_DTO, useExisting: FirebasePhotoService }],
+  	providers: [
+		FirebasePhotoService, 
+		{ provide: GETS_ALL_PHOTO_DTO, useExisting: FirebasePhotoService }],
   	exports: [] })
 export class FirebasePhotoServiceModule {
 }

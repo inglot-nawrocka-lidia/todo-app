@@ -1,9 +1,9 @@
-<p>
+<!-- <div>
     <button class="btn btn-primary btn-add-task" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-        aria-expanded="false" aria-controls="collapseExample">
-        Add task
-    </button>
-</p>
+    aria-expanded="false" aria-controls="collapseExample">
+    Add task
+</button>
+</div>
 
 <div class="collapse" id="collapseExample">
     <div class="card card-body bg-transparent border-0">
@@ -25,4 +25,11 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->
+
+   
+<form [formGroup]="task" (ngSubmit)="onAddTaskSubmited(task)">
+    <input type="text" formControlName="task" placeholder="Task" ngModel required class="d-block"/>
+    <button type="submit" [disabled]="task.invalid" class="addButton">Add Task</button>
+    <button type="button" class="bg-secondary m-3 cancelMain" (click)="cancelAnimationFrame()">Cancel</button>
+</form> 
